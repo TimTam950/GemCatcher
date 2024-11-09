@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciwpwh20xxdmw"]
+[gd_scene load_steps=7 format=3 uid="uid://ciwpwh20xxdmw"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_dce1w"]
 [ext_resource type="Texture2D" uid="uid://bqut3mt4skhm" path="res://assets/GameBg.png" id="1_palor"]
 [ext_resource type="PackedScene" uid="uid://i2n8y834gces" path="res://scenes/paddle.tscn" id="2_wls4s"]
 [ext_resource type="PackedScene" uid="uid://c7rhcssqkohoa" path="res://scenes/gem.tscn" id="3_hvl30"]
+[ext_resource type="AudioStream" uid="uid://f7sqwce06cyj" path="res://assets/bgm_action_5.mp3" id="5_ngnov"]
+[ext_resource type="AudioStream" uid="uid://dc6wx5p48gj01" path="res://assets/spell1_0.wav" id="6_twfin"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_dce1w")
@@ -21,4 +23,25 @@ position = Vector2(557, 578)
 wait_time = 2.0
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = 31.0
+offset_top = 12.0
+offset_right = 141.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(5.22219e-06, 0.710683, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.142308, 0.766339, 0.657934, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "00000"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ngnov")
+volume_db = -20.0
+autoplay = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_twfin")
+volume_db = -15.848
+
+[connection signal="area_entered" from="Paddle" to="." method="_on_paddle_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
